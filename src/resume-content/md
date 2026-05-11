@@ -1,0 +1,275 @@
+# Resume Content
+
+## Personal Information
+
+Name: Nicholas Jason
+
+Title: Computer Science Student | Software Engineering Enthusiast
+
+Location: Indonesia / Odense, Denmark
+
+Email: nicholasjason54@gmail.com
+
+LinkedIn: linkedin.com/in/nicholas-jason-769097309
+
+GitHub: github.com/Nobunaga20
+
+Resume PDF: /resume.pdf
+
+---
+
+## Professional Summary
+
+Computer Science student at BINUS University with experience building academic and personal projects in web development, machine learning, backend development, and programming. Interested in software engineering, backend development, web development, and general computer science internship opportunities.
+
+---
+
+## Skills
+
+### Programming Languages
+- Python
+- C++
+- C
+
+### Web Development
+- Laravel
+- Blade
+- React
+- HTML
+- CSS
+- JavaScript
+
+### Backend & Database
+- MySQL
+- Authentication systems
+- CRUD operations
+- Dashboard development
+
+### Machine Learning / AI
+- Natural Language Processing
+- DistilBERT
+- TF-IDF
+- Logistic Regression
+- TensorFlow
+- Keras
+- Computer Vision
+
+### Tools
+- Git
+- GitHub
+- Figma
+- Streamlit
+- VS Code
+
+### Languages
+- Indonesian: Native
+- English: IELTS 7.5
+
+---
+
+## Projects
+
+### AndRPaid
+
+GitHub: github.com/Nobunaga20/andrpaid
+
+Date: November 2025 - January 2026
+
+Tech Stack:
+- Laravel 11
+- MySQL
+- Blade
+- LaTeX / KaTeX
+
+Description:
+Developed AndRPaid, a research management platform that helps lecturers and universities manage research projects, collaborations, literature reviews, methodologies, results, and publication workflows in one centralized system.
+
+Key Features:
+- Dual-role authentication
+- Lecturer and university dashboards
+- Affiliation verification
+- Researcher discovery
+- Collaboration management
+- Structured research workspace
+- LaTeX / KaTeX formula rendering
+
+---
+
+### Round-Robin CPU Scheduler Simulation in C
+
+GitHub: github.com/Nobunaga20/round-robin-scheduler
+
+Date: December 2025
+
+Tech Stack:
+- C
+- Unix process control
+- POSIX signals
+- Interval timers
+
+Description:
+Implemented a Unix-based Round-Robin CPU scheduler in C to simulate time-sharing execution across multiple child processes.
+
+Key Features:
+- Process creation using fork()
+- Process preemption using SIGSTOP and SIGCONT
+- Process termination using SIGKILL
+- Configurable time slices
+- Burst time simulation
+- Rotating scheduler logic
+
+---
+
+### Toxic Comment Classification using NLP and DistilBERT
+
+GitHub: github.com/Nobunaga20/TF-IDF-Regression-VS-DistilBERT-on-Toxic-Comment-Classification
+
+Date: November 2025 - December 2025
+
+Tech Stack:
+- Python
+- NLP
+- TF-IDF
+- Logistic Regression
+- DistilBERT
+- Machine Learning
+
+Description:
+Built a multi-label toxic comment classification system using NLP to detect toxicity categories from online comments.
+
+Detected Categories:
+- Toxic
+- Severe toxic
+- Obscene
+- Threat
+- Insult
+- Identity hate
+
+Key Features:
+- Implemented TF-IDF + Logistic Regression as a baseline model
+- Fine-tuned a DistilBERT transformer model
+- Compared traditional ML and transformer-based approaches
+- Evaluated performance using Macro ROC-AUC and Macro F1-score
+- Used the Jigsaw Toxic Comment Classification dataset
+
+---
+
+### Low-Light Image Enhancement using Zero-DCE
+
+GitHub: github.com/Nobunaga20/Zero-DCE-Low-Light-Enhancement
+
+Date: November 2025 - December 2025
+
+Tech Stack:
+- Python
+- TensorFlow
+- Keras
+- Streamlit
+- Computer Vision
+- Deep Learning
+
+Description:
+Implemented a Zero-DCE deep learning model to enhance low-light images using zero-reference learning and iterative pixel-wise adjustment curves.
+
+Key Features:
+- Built a lightweight CNN architecture
+- Applied zero-reference learning without paired training data
+- Trained using the LOL dataset
+- Created a real-time Streamlit web application
+- Evaluated results using PSNR, SSIM, NIQE, and GMSD metrics
+
+---
+
+### Inventory Management Web Application
+
+Tech Stack:
+- Laravel
+- MySQL
+- Blade
+
+Description:
+Built a CRUD-based inventory management website for item tracking and record management.
+
+Key Features:
+- Create inventory records
+- View inventory data
+- Update item information
+- Delete inventory records
+- Manage item tracking through a web interface
+
+---
+
+## Experience
+
+### Bartender
+
+Company: Rasmus Rask Baren
+
+Location: Odense, Denmark
+
+Date: March 2026 - Present
+
+Description:
+Worked in a high-volume bar environment while managing multiple tasks during busy service periods and maintaining service quality.
+
+Responsibilities:
+- Prepared beverages efficiently
+- Handled customer requests
+- Delivered prompt and attentive service
+- Managed multiple tasks under pressure
+- Maintained service quality during busy periods
+
+---
+
+### Student Organization Activities
+
+Organization: HIMTI
+
+Date: April 2024 - September 2025
+
+Description:
+Supported student organization events through promotion, publication, marketing, and communication activities.
+
+Responsibilities:
+- Supported promotion and marketing activities
+- Helped publish and communicate event information
+- Collaborated with committee members
+- Improved event outreach and visibility
+
+---
+
+## Education
+
+### University of Southern Denmark
+
+Program: Exchange Student
+
+Location: Campusvej 55, 5230 Odense, Denmark
+
+Date: February 2026 - July 2026
+
+Field: Computer Science
+
+---
+
+### Bina Nusantara University
+
+Program: Computer Science
+
+Date: 2023 - Present
+
+---
+
+## Portfolio Notes
+
+The website should not display the entire resume as plain text. Instead, use this content to create portfolio sections such as:
+
+- Hero
+- About
+- Skills
+- Projects
+- Experience
+- Education
+- Contact
+
+The full formal resume should be available through a Download Resume button linking to `/resume.pdf`.

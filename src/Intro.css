@@ -15,11 +15,11 @@
 
 .guitar-stage {
   position: relative;
+  isolation: isolate;
   display: grid;
   width: clamp(220px, 42vw, 380px);
   aspect-ratio: 1;
   place-items: center;
-  isolation: isolate;
 }
 
 .guitar-glow {
@@ -49,50 +49,17 @@
   animation: guitarStrum 220ms ease-out both;
 }
 
-.music-notes {
+.single-note {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.music-note {
-  position: absolute;
+  top: 38%;
+  left: 54%;
   color: rgba(153, 246, 228, 0.92);
   font-size: clamp(18px, 4vw, 30px);
   font-weight: 800;
   opacity: 0;
+  pointer-events: none;
   text-shadow: 0 0 18px rgba(94, 234, 212, 0.34);
-  animation: noteRise 1100ms ease-out forwards;
-}
-
-.note-1 {
-  left: 15%;
-  top: 48%;
-  animation-delay: 0ms;
-}
-
-.note-2 {
-  left: 30%;
-  top: 26%;
-  animation-delay: 70ms;
-}
-
-.note-3 {
-  right: 25%;
-  top: 35%;
-  animation-delay: 120ms;
-}
-
-.note-4 {
-  right: 14%;
-  top: 53%;
-  animation-delay: 180ms;
-}
-
-.note-5 {
-  left: 50%;
-  top: 18%;
-  animation-delay: 230ms;
+  animation: noteRise 600ms ease-out forwards;
 }
 
 @keyframes guitarStrum {
@@ -138,7 +105,7 @@
 
   100% {
     opacity: 0;
-    transform: translateY(-92px) translateX(18px) scale(1.08);
+    transform: translateY(-64px) translateX(12px) scale(1.08);
   }
 }
 
@@ -159,7 +126,7 @@
     width: min(78vw, 300px);
   }
 
-  .music-note {
+  .single-note {
     font-size: 20px;
   }
 }
@@ -173,8 +140,8 @@
     animation: strumGlowReduced 220ms ease-out both;
   }
 
-  .music-note {
-    animation-duration: 700ms;
+  .single-note {
+    animation-duration: 500ms;
   }
 }
 

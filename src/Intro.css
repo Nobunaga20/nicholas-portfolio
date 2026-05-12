@@ -1,124 +1,150 @@
 .intro-screen {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 20000;
   display: grid;
   place-items: center;
   min-height: 100svh;
   padding: 24px;
-  color: #f8fafc;
   background:
-    radial-gradient(circle at 20% 16%, rgba(94, 234, 212, 0.18), transparent 24rem),
-    radial-gradient(circle at 78% 18%, rgba(56, 189, 248, 0.14), transparent 22rem),
+    radial-gradient(circle at 20% 16%, rgba(94, 234, 212, 0.16), transparent 24rem),
+    radial-gradient(circle at 78% 18%, rgba(56, 189, 248, 0.12), transparent 22rem),
     linear-gradient(135deg, #08111f, #0f172a 54%, #102326);
-  animation: introExit 2500ms ease forwards;
+  animation: introExit 3000ms ease forwards;
 }
 
-.intro-shell {
+.guitar-stage {
+  position: relative;
   display: grid;
-  justify-items: center;
-  gap: 24px;
-  width: min(640px, 100%);
-  text-align: center;
-}
-
-.intro-mark {
-  display: grid;
-  width: clamp(72px, 16vw, 104px);
+  width: clamp(220px, 42vw, 380px);
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgba(94, 234, 212, 0.42);
+  isolation: isolate;
+}
+
+.guitar-glow {
+  position: absolute;
+  inset: 18%;
+  z-index: -1;
   border-radius: 50%;
-  color: #5eead4;
-  background: rgba(21, 31, 50, 0.72);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
-  font-size: clamp(24px, 6vw, 38px);
-  font-weight: 900;
-  animation: introScale 700ms ease both;
+  background: radial-gradient(circle, rgba(94, 234, 212, 0.32), transparent 68%);
+  filter: blur(8px);
+  opacity: 0.58;
+  transform: scale(0.96);
 }
 
-.intro-copy {
-  display: grid;
-  gap: 8px;
+.guitar-glow.pulse {
+  animation: strumGlow 220ms ease-out both;
 }
 
-.intro-copy p {
-  color: #5eead4;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  animation: introRise 620ms ease 160ms both;
+.intro-guitar {
+  width: min(84%, 320px);
+  height: auto;
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.36));
+  transform: translateY(0) rotate(-2deg);
+  transform-origin: 52% 54%;
 }
 
-.intro-copy h1 {
-  color: #f8fafc;
-  font-size: clamp(42px, 10vw, 78px);
-  line-height: 1;
-  animation: introRise 620ms ease 260ms both;
+.intro-guitar.strumming {
+  animation: guitarStrum 220ms ease-out both;
 }
 
-.intro-copy span {
-  color: #b8c1cc;
-  font-size: clamp(15px, 3vw, 19px);
-  animation: introRise 620ms ease 360ms both;
+.music-notes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.intro-loader {
-  width: min(340px, 78vw);
-  height: 5px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: rgba(184, 193, 204, 0.18);
+.music-note {
+  position: absolute;
+  color: rgba(153, 246, 228, 0.92);
+  font-size: clamp(18px, 4vw, 30px);
+  font-weight: 800;
+  opacity: 0;
+  text-shadow: 0 0 18px rgba(94, 234, 212, 0.34);
+  animation: noteRise 1100ms ease-out forwards;
 }
 
-.intro-loader span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #5eead4, #38bdf8);
-  transform-origin: left;
-  animation: introLoad 2100ms ease-in-out both;
+.note-1 {
+  left: 15%;
+  top: 48%;
+  animation-delay: 0ms;
 }
 
-@keyframes introScale {
-  from {
+.note-2 {
+  left: 30%;
+  top: 26%;
+  animation-delay: 70ms;
+}
+
+.note-3 {
+  right: 25%;
+  top: 35%;
+  animation-delay: 120ms;
+}
+
+.note-4 {
+  right: 14%;
+  top: 53%;
+  animation-delay: 180ms;
+}
+
+.note-5 {
+  left: 50%;
+  top: 18%;
+  animation-delay: 230ms;
+}
+
+@keyframes guitarStrum {
+  0% {
+    transform: translateY(0) rotate(-2deg) scale(1);
+  }
+
+  45% {
+    transform: translateY(12px) rotate(5deg) scale(1.025);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-2deg) scale(1);
+  }
+}
+
+@keyframes strumGlow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+
+  45% {
+    opacity: 0.95;
+    transform: scale(1.18);
+  }
+
+  100% {
+    opacity: 0.58;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes noteRise {
+  0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: translateY(0) translateX(0) scale(0.78);
   }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
+  18% {
+    opacity: 0.9;
   }
-}
 
-@keyframes introRise {
-  from {
+  100% {
     opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes introLoad {
-  from {
-    transform: scaleX(0);
-  }
-
-  to {
-    transform: scaleX(1);
+    transform: translateY(-92px) translateX(18px) scale(1.08);
   }
 }
 
 @keyframes introExit {
   0%,
-  78% {
+  82% {
     opacity: 1;
   }
 
@@ -129,23 +155,47 @@
 }
 
 @media (max-width: 560px) {
-  .intro-shell {
-    gap: 20px;
+  .guitar-stage {
+    width: min(78vw, 300px);
   }
 
-  .intro-copy span {
-    max-width: 280px;
+  .music-note {
+    font-size: 20px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .intro-screen,
-  .intro-mark,
-  .intro-copy p,
-  .intro-copy h1,
-  .intro-copy span,
-  .intro-loader span {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+  .intro-guitar.strumming {
+    animation: guitarStrumReduced 220ms ease-out both;
+  }
+
+  .guitar-glow.pulse {
+    animation: strumGlowReduced 220ms ease-out both;
+  }
+
+  .music-note {
+    animation-duration: 700ms;
+  }
+}
+
+@keyframes guitarStrumReduced {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(4px) rotate(0deg);
+  }
+}
+
+@keyframes strumGlowReduced {
+  0%,
+  100% {
+    opacity: 0.58;
+  }
+
+  50% {
+    opacity: 0.72;
   }
 }

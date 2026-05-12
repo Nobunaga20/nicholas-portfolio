@@ -178,7 +178,7 @@ function App() {
   useEffect(() => {
     const introTimer = window.setTimeout(() => {
       setShowIntro(false)
-    }, 2500)
+    }, 3000)
 
     return () => window.clearTimeout(introTimer)
   }, [])
@@ -296,8 +296,7 @@ function App() {
         <div className="about-copy">
           <p>{profile.about}</p>
           <p>
-            Based in {profile.location}. Edit the profile object to make this
-            feel fully yours.
+            Based in {profile.location}. 
           </p>
         </div>
       </section>

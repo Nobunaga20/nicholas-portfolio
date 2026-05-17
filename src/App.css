@@ -1,23 +1,14 @@
 .portfolio {
-  --text: #b8c1cc;
-  --text-h: #f8fafc;
-  --bg: #0f172a;
-  --surface: #151f32;
-  --surface-soft: #102326;
-  --border: #29364b;
-  --accent: #5eead4;
-  --accent-strong: #99f6e4;
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
-
   min-height: 100svh;
   position: relative;
   z-index: 0;
   padding-top: 72px;
   color: var(--text);
   background:
-    radial-gradient(circle at 12% 8%, rgba(94, 234, 212, 0.16), transparent 28rem),
-    radial-gradient(circle at 86% 12%, rgba(56, 189, 248, 0.14), transparent 24rem),
-    linear-gradient(180deg, var(--surface-soft), var(--bg) 34rem);
+    radial-gradient(circle at 8% 6%, rgba(234, 196, 213, 0.48), transparent 27rem),
+    radial-gradient(circle at 86% 10%, rgba(149, 184, 209, 0.42), transparent 26rem),
+    radial-gradient(circle at 42% 44%, rgba(184, 224, 210, 0.42), transparent 30rem),
+    linear-gradient(135deg, #f6fbf8 0%, #d6eadf 38%, #b8e0d2 68%, #eac4d5 100%);
 }
 
 .portfolio-enter {
@@ -37,8 +28,9 @@
   margin: 0;
   padding: 16px clamp(16px, 4vw, 48px);
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(16px);
+  box-shadow: 0 12px 30px rgba(128, 155, 206, 0.12);
 }
 
 .brand {
@@ -81,7 +73,7 @@
 
 .nav-links a:hover,
 .contact-section a:hover {
-  color: var(--accent);
+  color: var(--accent-main);
 }
 
 .filter-group button,
@@ -95,13 +87,14 @@
   border: 1px solid var(--border);
   border-radius: 999px;
   color: var(--text-h);
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.64);
 }
 
 .filter-group button:hover,
 .filter-group button.active {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--accent-secondary);
+  color: var(--text-h);
+  background: color-mix(in srgb, var(--accent-secondary) 18%, white);
 }
 
 .hero-section,
@@ -181,14 +174,16 @@
 }
 
 .button.primary {
-  border-color: var(--accent);
-  color: #06201d;
-  background: var(--accent);
+  border-color: var(--accent-main);
+  color: #f6fbf8;
+  background: var(--accent-main);
+  box-shadow: 0 12px 26px rgba(128, 155, 206, 0.22);
 }
 
 .button.secondary {
   color: var(--text-h);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--color-pale-mint) 48%, white);
+  border-color: var(--border);
 }
 
 .button:hover,
@@ -198,6 +193,17 @@
   box-shadow: var(--shadow);
 }
 
+.button.primary:hover {
+  border-color: var(--accent-secondary);
+  background: var(--accent-secondary);
+}
+
+.button.secondary:hover,
+.contact-links a:hover {
+  border-color: var(--accent-pink);
+  background: color-mix(in srgb, var(--accent-pink) 26%, white);
+}
+
 .hero-panel {
   display: grid;
   gap: 18px;
@@ -205,9 +211,11 @@
   border-radius: 8px;
   padding: 28px;
   background:
-    linear-gradient(135deg, rgba(20, 184, 166, 0.14), transparent 44%),
+    linear-gradient(135deg, rgba(214, 234, 223, 0.72), transparent 46%),
+    linear-gradient(315deg, rgba(234, 196, 213, 0.46), transparent 46%),
     var(--surface);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
 }
 
 .hero-panel ul {
@@ -271,7 +279,7 @@
 }
 
 .filter-group button.active {
-  background: color-mix(in srgb, var(--accent) 13%, var(--surface));
+  background: color-mix(in srgb, var(--accent-secondary) 18%, white);
 }
 
 .skill-list {
@@ -282,7 +290,7 @@
 .skill-pill,
 .stack-list span {
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--color-pale-mint) 52%, white);
   color: var(--text-h);
 }
 
@@ -299,7 +307,7 @@
 }
 
 .skill-pill:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-secondary);
   transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
@@ -329,6 +337,7 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface);
+  backdrop-filter: blur(10px);
 }
 
 .project-card {
@@ -347,7 +356,8 @@
 }
 
 .project-card:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-secondary);
+  background: var(--surface-strong);
 }
 
 .project-card p,
@@ -362,7 +372,7 @@
 }
 
 .card-action {
-  color: var(--accent);
+  color: var(--accent-main);
   font-weight: 800;
 }
 
@@ -383,6 +393,7 @@
   border-radius: 8px;
   padding: 24px;
   background: var(--surface);
+  backdrop-filter: blur(10px);
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
@@ -390,7 +401,7 @@
 }
 
 .experience-card:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-secondary);
   transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
@@ -408,7 +419,7 @@
 }
 
 .experience-topline span {
-  color: var(--accent);
+  color: var(--accent-main);
   font-weight: 800;
   white-space: nowrap;
 }
@@ -435,24 +446,24 @@
 }
 
 .timeline-item:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-secondary);
   box-shadow: var(--shadow);
   transform: translateY(-3px);
 }
 
 .timeline-item span {
-  color: var(--accent);
+  color: var(--accent-main);
   font-weight: 800;
 }
 
 .timeline-tag {
   display: inline-flex;
   margin-bottom: 10px;
-  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--accent-secondary) 38%, var(--border));
   border-radius: 999px;
   padding: 4px 9px;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--text-h);
+  background: color-mix(in srgb, var(--accent-mint) 42%, white);
   font-size: 12px;
   font-weight: 800;
   line-height: 1.2;
@@ -473,7 +484,7 @@
 }
 
 .contact-section a {
-  color: var(--accent);
+  color: var(--accent-main);
 }
 
 .contact-links {
@@ -489,7 +500,7 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0 16px;
-  background: var(--surface);
+  background: color-mix(in srgb, var(--color-pale-mint) 48%, white);
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
@@ -505,8 +516,8 @@
   justify-content: center;
   padding: 20px;
   overflow: hidden;
-  background: rgba(2, 6, 23, 0.42);
-  backdrop-filter: blur(2px);
+  background: rgba(36, 52, 71, 0.22);
+  backdrop-filter: blur(4px);
   animation: fadeIn 160ms ease both;
 }
 
@@ -523,8 +534,11 @@
   border-radius: 8px;
   padding: 30px;
   color: var(--text);
-  background: var(--surface);
-  box-shadow: var(--shadow, 0 24px 60px rgba(0, 0, 0, 0.34));
+  background:
+    linear-gradient(135deg, rgba(214, 234, 223, 0.74), transparent 48%),
+    linear-gradient(315deg, rgba(234, 196, 213, 0.44), transparent 48%),
+    var(--surface-strong);
+  box-shadow: var(--shadow);
   transform: translate(-50%, -50%);
   animation: modalCenterIn 180ms ease both;
 }
@@ -544,7 +558,7 @@
   border: 1px solid var(--border);
   border-radius: 50%;
   color: var(--text-h);
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .reveal {

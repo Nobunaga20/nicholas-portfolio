@@ -12,4 +12,4 @@ Personal developer portfolio built with Vite and React.
 ## Public Assets
 
 - `/resume.pdf` is used by the resume download links.
-- `/guitar.png` and `/intro-audio.wav` are used by the intro loading screen.
+- `/intro-audio.mp3` is used by the intro loading screen.

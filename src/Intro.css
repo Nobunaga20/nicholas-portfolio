@@ -3,109 +3,268 @@
   inset: 0;
   z-index: 20000;
   display: grid;
-  place-items: center;
   min-height: 100svh;
+  place-items: center;
   padding: 24px;
   background:
-    radial-gradient(circle at 20% 16%, rgba(94, 234, 212, 0.16), transparent 24rem),
-    radial-gradient(circle at 78% 18%, rgba(56, 189, 248, 0.12), transparent 22rem),
-    linear-gradient(135deg, #08111f, #0f172a 54%, #102326);
+    radial-gradient(circle at 50% 52%, rgba(234, 196, 213, 0.36), transparent 19rem),
+    radial-gradient(circle at 16% 12%, rgba(184, 224, 210, 0.52), transparent 24rem),
+    radial-gradient(circle at 84% 18%, rgba(149, 184, 209, 0.38), transparent 22rem),
+    linear-gradient(135deg, #f6fbf8 0%, #d6eadf 48%, #eac4d5 100%);
   animation: introExit 3000ms ease forwards;
 }
 
-.guitar-stage {
+.campfire-scene {
   position: relative;
   isolation: isolate;
   display: grid;
-  width: clamp(220px, 42vw, 380px);
+  width: clamp(220px, 42vw, 360px);
   aspect-ratio: 1;
   place-items: center;
 }
 
-.guitar-glow {
+.campfire-glow {
   position: absolute;
-  inset: 18%;
+  inset: 23%;
   z-index: -1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(94, 234, 212, 0.32), transparent 68%);
-  filter: blur(8px);
-  opacity: 0.58;
-  transform: scale(0.96);
+  background:
+    radial-gradient(circle, rgba(255, 248, 240, 0.82) 0 24%, rgba(234, 196, 213, 0.54) 48%, rgba(184, 224, 210, 0.22) 68%, transparent 76%);
+  filter: blur(10px);
+  opacity: 0.72;
+  animation: warmGlow 2300ms ease-in-out infinite;
 }
 
-.guitar-glow.pulse {
-  animation: strumGlow 220ms ease-out both;
+.campfire {
+  position: relative;
+  width: clamp(110px, 22vw, 160px);
+  height: clamp(120px, 24vw, 170px);
 }
 
-.intro-guitar {
-  width: min(84%, 320px);
-  height: auto;
-  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.36));
-  transform: translateY(0) rotate(-2deg);
-  transform-origin: 52% 54%;
-}
-
-.intro-guitar.strumming {
-  animation: guitarStrum 220ms ease-out both;
-}
-
-.single-note {
+.flame {
   position: absolute;
-  top: 38%;
-  left: 54%;
-  color: rgba(153, 246, 228, 0.92);
-  font-size: clamp(18px, 4vw, 30px);
-  font-weight: 800;
-  opacity: 0;
+  right: 0;
+  bottom: 36px;
+  left: 0;
+  margin: auto;
+  border-radius: 54% 46% 52% 48% / 66% 64% 36% 34%;
+  transform-origin: 50% 88%;
+  animation: flameFlicker 1300ms ease-in-out infinite;
+}
+
+.flame-back {
+  width: 78px;
+  height: 116px;
+  background: var(--accent-pink);
+  opacity: 0.86;
+  animation-delay: -280ms;
+}
+
+.flame-mid {
+  width: 58px;
+  height: 92px;
+  background: #fff3e6;
+  animation-delay: -120ms;
+}
+
+.flame-front {
+  width: 34px;
+  height: 62px;
+  background: #fffaf2;
+  animation-delay: -520ms;
+}
+
+.log,
+.coal-bed {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.log {
+  bottom: 24px;
+  width: 104px;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #806a7b, #c59bac 48%, #6d647a);
+}
+
+.log-left {
+  transform: rotate(18deg);
+}
+
+.log-right {
+  transform: rotate(-18deg);
+}
+
+.coal-bed {
+  bottom: 18px;
+  width: 80px;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(95, 111, 127, 0.62);
+  box-shadow:
+    0 0 12px rgba(234, 196, 213, 0.42),
+    inset 0 0 8px rgba(214, 234, 223, 0.3);
+}
+
+.ember-field,
+.smoke-field {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
-  text-shadow: 0 0 18px rgba(94, 234, 212, 0.34);
-  animation: noteRise 600ms ease-out forwards;
 }
 
-@keyframes guitarStrum {
-  0% {
-    transform: translateY(0) rotate(-2deg) scale(1);
+.ember-field span,
+.smoke-field span {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.ember-field span {
+  bottom: 34%;
+  width: 5px;
+  height: 5px;
+  background: #fff8f0;
+  box-shadow: 0 0 12px rgba(234, 196, 213, 0.72);
+  opacity: 0;
+  animation: emberRise 2600ms ease-in infinite;
+}
+
+.ember-field span:nth-child(1) {
+  translate: -48px 0;
+  animation-delay: -200ms;
+}
+
+.ember-field span:nth-child(2) {
+  translate: -30px 0;
+  animation-delay: -900ms;
+}
+
+.ember-field span:nth-child(3) {
+  translate: -12px 0;
+  animation-delay: -1500ms;
+}
+
+.ember-field span:nth-child(4) {
+  translate: 10px 0;
+  animation-delay: -500ms;
+}
+
+.ember-field span:nth-child(5) {
+  translate: 26px 0;
+  animation-delay: -1200ms;
+}
+
+.ember-field span:nth-child(6) {
+  translate: 42px 0;
+  animation-delay: -1800ms;
+}
+
+.ember-field span:nth-child(7) {
+  translate: -4px 0;
+  animation-delay: -2300ms;
+}
+
+.ember-field span:nth-child(8) {
+  translate: 54px 0;
+  animation-delay: -2600ms;
+}
+
+.smoke-field span {
+  bottom: 47%;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(128, 155, 206, 0.2);
+  opacity: 0;
+  animation: smokeDrift 4200ms ease-in infinite;
+}
+
+.smoke-field span:nth-child(1) {
+  translate: -28px 0;
+  animation-delay: -900ms;
+}
+
+.smoke-field span:nth-child(2) {
+  translate: 8px 0;
+  animation-delay: -2200ms;
+}
+
+.smoke-field span:nth-child(3) {
+  translate: 36px 0;
+  animation-delay: -3300ms;
+}
+
+.intro-status {
+  align-self: end;
+  margin-top: 22px;
+  color: var(--text-main);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+@keyframes flameFlicker {
+  0%,
+  100% {
+    transform: scaleY(1) rotate(-2deg);
   }
 
   45% {
-    transform: translateY(12px) rotate(5deg) scale(1.025);
+    transform: scaleY(1.08) scaleX(0.94) rotate(3deg);
   }
 
-  100% {
-    transform: translateY(0) rotate(-2deg) scale(1);
-  }
-}
-
-@keyframes strumGlow {
-  0% {
-    opacity: 0.5;
-    transform: scale(0.92);
-  }
-
-  45% {
-    opacity: 0.95;
-    transform: scale(1.18);
-  }
-
-  100% {
-    opacity: 0.58;
-    transform: scale(0.98);
+  70% {
+    transform: scaleY(0.96) scaleX(1.04) rotate(-1deg);
   }
 }
 
-@keyframes noteRise {
+@keyframes warmGlow {
+  0%,
+  100% {
+    opacity: 0.56;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes emberRise {
   0% {
     opacity: 0;
-    transform: translateY(0) translateX(0) scale(0.78);
+    transform: translateY(0) scale(0.7);
   }
 
-  18% {
-    opacity: 0.9;
+  16% {
+    opacity: 0.88;
   }
 
   100% {
     opacity: 0;
-    transform: translateY(-64px) translateX(12px) scale(1.08);
+    transform: translateY(-120px) scale(0.3);
+  }
+}
+
+@keyframes smokeDrift {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+
+  24% {
+    opacity: 0.38;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-92px) scale(1.25);
   }
 }
 
@@ -122,47 +281,17 @@
 }
 
 @media (max-width: 560px) {
-  .guitar-stage {
+  .campfire-scene {
     width: min(78vw, 300px);
-  }
-
-  .single-note {
-    font-size: 20px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .intro-guitar.strumming {
-    animation: guitarStrumReduced 220ms ease-out both;
-  }
-
-  .guitar-glow.pulse {
-    animation: strumGlowReduced 220ms ease-out both;
-  }
-
-  .single-note {
-    animation-duration: 500ms;
-  }
-}
-
-@keyframes guitarStrumReduced {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-2deg);
-  }
-
-  50% {
-    transform: translateY(4px) rotate(0deg);
-  }
-}
-
-@keyframes strumGlowReduced {
-  0%,
-  100% {
-    opacity: 0.58;
-  }
-
-  50% {
-    opacity: 0.72;
+  .flame,
+  .campfire-glow,
+  .ember-field span,
+  .smoke-field span {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

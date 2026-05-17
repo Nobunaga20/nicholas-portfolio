@@ -1,15 +1,3 @@
-# Nicholas Jason Portfolio
+Hi!!!
 
-Personal developer portfolio built with Vite and React.
-
-## Scripts
-
-- `npm run dev` starts the local development server.
-- `npm run build` creates a production build.
-- `npm run lint` checks the project with ESLint.
-- `npm run preview` serves the production build locally.
-
-## Public Assets
-
-- `/resume.pdf` is used by the resume download links.
-- `/intro-audio.mp3` is used by the intro loading screen.
+This is my portfolio of all the projects I've done. It's just a simple website with an intro (with sound but I don't know why it's not working in Chrome). I personally liked the color palette of pastel so that's why I used it 

@@ -111,7 +111,7 @@ function App() {
         </section>
 
         <section id="skills" className="section reveal">
-          <SectionHeading kicker="Skills" title="Tools and technologies" />
+          <SectionHeading kicker="Skills" />
           <div className="skill-list">
             {skills.map((skill) => (
               <article className="skill-pill" key={skill.name}>
@@ -126,7 +126,6 @@ function App() {
           <div className="section-heading project-heading">
             <div>
               <p className="section-kicker">Projects</p>
-              <h2>Selected work</h2>
             </div>
             <div className="filter-group" aria-label="Project filters">
               {categories.map((category) => (
@@ -164,7 +163,7 @@ function App() {
         </section>
 
         <section id="experience" className="section reveal">
-          <SectionHeading kicker="Experience" title="Professional background" />
+          <SectionHeading kicker="Experience" />
           <div className="experience-list">
             {experience.map((item) => (
               <article

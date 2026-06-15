@@ -10,6 +10,7 @@ import {
   projects,
   skills,
 } from './data/portfolioData'
+import portoPhoto from './assets/porto-photo.jpeg'
 import Intro from './Intro'
 import './App.css'
 
@@ -88,14 +89,12 @@ function App() {
               </a>
             </div>
           </div>
-          <div className="hero-panel" aria-label="Portfolio focus areas">
-            <p className="section-kicker">Focus</p>
-            <ul>
-              <li>Web development</li>
-              <li>Backend systems</li>
-              <li>Machine learning projects</li>
-              <li>Computer science fundamentals</li>
-            </ul>
+          <div className="hero-photo-card">
+            <img
+              src={portoPhoto}
+              alt="Nicholas Jason portrait"
+              className="hero-photo"
+            />
           </div>
         </section>
 

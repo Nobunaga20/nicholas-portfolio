@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Navbar from './components/Navbar'
 import ProjectModal from './components/ProjectModal'
 import SectionHeading from './components/SectionHeading'
@@ -15,6 +16,65 @@ import Intro from './Intro'
 import './App.css'
 
 const INTRO_DURATION = 3000
+const MOTION_EASE = [0.22, 1, 0.36, 1]
+const VIEWPORT_ONCE = { once: true, amount: 0.18 }
+
+function createMotionSettings(reduceMotion) {
+  const duration = reduceMotion ? 0.01 : 0.64
+  const shortDuration = reduceMotion ? 0.01 : 0.22
+
+  return {
+    fadeUp: {
+      hidden: { opacity: 0, y: reduceMotion ? 0 : 32 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration, ease: MOTION_EASE },
+      },
+    },
+    heroItem: {
+      hidden: { opacity: 0, y: reduceMotion ? 0 : 28 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration, ease: MOTION_EASE },
+      },
+    },
+    heroPhoto: {
+      hidden: { opacity: 0, scale: reduceMotion ? 1 : 0.96 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: { duration: reduceMotion ? 0.01 : 0.72, ease: MOTION_EASE },
+      },
+    },
+    stagger: {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: reduceMotion ? 0 : 0.1,
+          delayChildren: reduceMotion ? 0 : 0.08,
+        },
+      },
+    },
+    heroStagger: {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: reduceMotion ? 0 : 0.12,
+          delayChildren: reduceMotion ? 0 : 0.12,
+        },
+      },
+    },
+    hoverLift: reduceMotion
+      ? undefined
+      : { y: -4, scale: 1.02, transition: { duration: shortDuration, ease: MOTION_EASE } },
+    hoverButton: reduceMotion
+      ? undefined
+      : { y: -2, scale: 1.02, transition: { duration: shortDuration, ease: MOTION_EASE } },
+    tapSoft: reduceMotion ? undefined : { scale: 0.98 },
+  }
+}
 
 function StackList({ items }) {
   return (
@@ -30,6 +90,7 @@ function App() {
   const [showIntro, setShowIntro] = useState(true)
   const [activeCategory, setActiveCategory] = useState('All')
   const [selectedProject, setSelectedProject] = useState(null)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     const introTimer = window.setTimeout(() => {
@@ -63,6 +124,8 @@ function App() {
     return projects.filter((project) => project.category === activeCategory)
   }, [activeCategory])
 
+  const motionSettings = createMotionSettings(reduceMotion)
+
   if (showIntro) {
     return <Intro />
   }
@@ -71,81 +134,156 @@ function App() {
     <>
       <Navbar />
 
-      <main className="portfolio portfolio-enter">
-        <section id="hero" className="hero-section reveal">
-          <div className="hero-copy">
-            <p className="eyebrow">{profile.role}</p>
-            <h1>{profile.name}</h1>
-            <p className="hero-text">{profile.intro}</p>
-            <div className="hero-actions">
-              <a className="button primary" href="#projects">
+      <main className="portfolio">
+        <section id="hero" className="hero-section">
+          <motion.div
+            className="hero-copy"
+            variants={motionSettings.heroStagger}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.p className="eyebrow" variants={motionSettings.heroItem}>
+              {profile.role}
+            </motion.p>
+            <motion.h1 variants={motionSettings.heroItem}>{profile.name}</motion.h1>
+            <motion.p className="hero-text" variants={motionSettings.heroItem}>
+              {profile.intro}
+            </motion.p>
+            <motion.div className="hero-actions" variants={motionSettings.heroItem}>
+              <motion.a
+                className="button primary"
+                href="#projects"
+                whileHover={motionSettings.hoverButton}
+                whileTap={motionSettings.tapSoft}
+              >
                 View Projects
-              </a>
-              <a className="button secondary" href="#contact">
+              </motion.a>
+              <motion.a
+                className="button secondary"
+                href="#contact"
+                whileHover={motionSettings.hoverButton}
+                whileTap={motionSettings.tapSoft}
+              >
                 Contact Me
-              </a>
-              <a className="button secondary" href="/resume.pdf" download>
+              </motion.a>
+              <motion.a
+                className="button secondary"
+                href="/resume.pdf"
+                download
+                whileHover={motionSettings.hoverButton}
+                whileTap={motionSettings.tapSoft}
+              >
                 Download Resume
-              </a>
-            </div>
-          </div>
-          <div className="hero-photo-card">
+              </motion.a>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className="hero-photo-card"
+            variants={motionSettings.heroPhoto}
+            initial="hidden"
+            animate="visible"
+            whileHover={motionSettings.hoverLift}
+          >
             <img
               src={portoPhoto}
               alt="Nicholas Jason portrait"
               className="hero-photo"
             />
-          </div>
+          </motion.div>
         </section>
 
-        <section id="about" className="section split-section reveal">
-          <div>
+        <motion.section
+          id="about"
+          className="section split-section"
+          variants={motionSettings.stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
+          <motion.div variants={motionSettings.fadeUp}>
             <p className="section-kicker">About Me</p>
             <h2>Developer focused on useful, polished products.</h2>
-          </div>
-          <div className="about-copy">
+          </motion.div>
+          <motion.div className="about-copy" variants={motionSettings.fadeUp}>
             <p>{profile.about}</p>
             <p>Based in {profile.location}.</p>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section id="skills" className="section reveal">
+        <motion.section
+          id="skills"
+          className="section"
+          variants={motionSettings.fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           <SectionHeading kicker="Skills" />
-          <div className="skill-list">
+          <motion.div
+            className="skill-list"
+            variants={motionSettings.stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+          >
             {skills.map((skill) => (
-              <article className="skill-pill" key={skill.name}>
+              <motion.article
+                className="skill-pill"
+                key={skill.name}
+                variants={motionSettings.fadeUp}
+                whileHover={motionSettings.hoverLift}
+                whileTap={motionSettings.tapSoft}
+              >
                 <span>{skill.name}</span>
                 <small>{skill.level}</small>
-              </article>
+              </motion.article>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section id="projects" className="section reveal">
+        <motion.section
+          id="projects"
+          className="section"
+          variants={motionSettings.fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           <div className="section-heading project-heading">
             <div>
               <p className="section-kicker">Projects</p>
             </div>
             <div className="filter-group" aria-label="Project filters">
               {categories.map((category) => (
-                <button
+                <motion.button
                   className={category === activeCategory ? 'active' : ''}
                   type="button"
                   onClick={() => setActiveCategory(category)}
                   key={category}
+                  whileHover={motionSettings.hoverButton}
+                  whileTap={motionSettings.tapSoft}
                 >
                   {category}
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>
-          <div className="project-grid">
+          <motion.div
+            className="project-grid"
+            variants={motionSettings.stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+          >
             {filteredProjects.map((project) => (
-              <button
+              <motion.button
                 className="project-card"
                 type="button"
                 onClick={() => setSelectedProject(project)}
                 key={project.title}
+                variants={motionSettings.fadeUp}
+                whileHover={motionSettings.hoverLift}
+                whileTap={motionSettings.tapSoft}
               >
                 <div>
                   <span className="project-category">{project.category}</span>
@@ -156,18 +294,34 @@ function App() {
                   <StackList items={project.stack} />
                   <span className="card-action">Open details</span>
                 </div>
-              </button>
+              </motion.button>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section id="experience" className="section reveal">
+        <motion.section
+          id="experience"
+          className="section"
+          variants={motionSettings.fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           <SectionHeading kicker="Experience" />
-          <div className="experience-list">
+          <motion.div
+            className="experience-list"
+            variants={motionSettings.stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+          >
             {experience.map((item) => (
-              <article
+              <motion.article
                 className="experience-card"
                 key={`${item.company}-${item.period}`}
+                variants={motionSettings.fadeUp}
+                whileHover={motionSettings.hoverLift}
+                whileTap={motionSettings.tapSoft}
               >
                 <div className="experience-topline">
                   <div>
@@ -182,28 +336,54 @@ function App() {
                     <li key={highlight}>{highlight}</li>
                   ))}
                 </ul>
-              </article>
+              </motion.article>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section id="education" className="section reveal">
+        <motion.section
+          id="education"
+          className="section"
+          variants={motionSettings.fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           <SectionHeading kicker="Education" title="Learning path" />
-          <div className="timeline">
+          <motion.div
+            className="timeline"
+            variants={motionSettings.stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+          >
             {education.map((item) => (
-              <article className="timeline-item" key={`${item.school}-${item.year}`}>
+              <motion.article
+                className="timeline-item"
+                key={`${item.school}-${item.year}`}
+                variants={motionSettings.fadeUp}
+                whileHover={motionSettings.hoverLift}
+                whileTap={motionSettings.tapSoft}
+              >
                 <div>
                   <small className="timeline-tag">Learning milestone</small>
                   <h3>{item.school}</h3>
                   <p>{item.program}</p>
                 </div>
                 <span>{item.year}</span>
-              </article>
+              </motion.article>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section id="contact" className="section contact-section reveal">
+        <motion.section
+          id="contact"
+          className="section contact-section"
+          variants={motionSettings.fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           <p className="section-kicker">Contact</p>
           <h2>Have a project or opportunity in mind?</h2>
           <p>
@@ -213,18 +393,28 @@ function App() {
 
           <div className="contact-links">
             {profile.socials.map((item) => (
-              <a href={item.url} key={item.label}>
+              <motion.a
+                href={item.url}
+                key={item.label}
+                whileHover={motionSettings.hoverButton}
+                whileTap={motionSettings.tapSoft}
+              >
                 {item.label}
-              </a>
+              </motion.a>
             ))}
           </div>
-        </section>
+        </motion.section>
       </main>
 
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            key={selectedProject.title}
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }
